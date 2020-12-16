@@ -11,7 +11,7 @@ WHATSAPP BOT PARA TERMUX
 
 # TERMUX
 ```bash
-> Baixe O Termux
+> Baixe O Termux (Óbvio)
 > Abra E Digite:
 > apt update && apt upgrade
 > pkg install git
@@ -34,6 +34,8 @@ WHATSAPP BOT PARA TERMUX
 |       ✅       | ANIME                             |
 |       ✅       | LETRA                             |
 |       ✅       | CRIPTO                            |
+|       ✅       | YTMP4/MP3 COM LINK                            |
+|       ✅       | OCR/SCAN                            |
 
 ## EM BREVE MAIS OPÇÕES
 
