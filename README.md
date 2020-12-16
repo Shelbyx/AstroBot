@@ -22,7 +22,6 @@ WHATSAPP BOT PARA TERMUX
 > Escaneie O Código E Pronto!
 ```
 
-<img src = "https://media1.tenor.com/images/dbf0d28a5491c34975823e0f87668721/tenor.gif?itemid=19593489" width="120">
 
 # FUNÇÕES
 
