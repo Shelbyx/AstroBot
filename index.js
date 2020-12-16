@@ -565,7 +565,5 @@ if (text.includes("!alay")){
 	})
 }
 
-      });
-
 
 })
