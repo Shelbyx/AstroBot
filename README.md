@@ -2,7 +2,7 @@
 WHATSAPP BOT PARA TERMUX
 
 
-<img src = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQNo9YBQYjx1xke4J8Ez-SuRBaxiyjfnJWtEg&usqp=CAU" width="320">
+<img src = "https://media1.tenor.com/images/3ed6ab449b5d63689c0c4890f3f9bfe5/tenor.gif?itemid=19592912" width="320">
 
 
 
