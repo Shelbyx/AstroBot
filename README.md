@@ -1,4 +1,4 @@
-## MornigStar
+## ∆stro Bot
 WHATSAPP BOT PARA TERMUX
 
 
@@ -15,8 +15,8 @@ WHATSAPP BOT PARA TERMUX
 > Abra E Digite:
 > apt update && apt upgrade
 > pkg install git
-> git clone https://github.com/FrostyGekyume/MornigStar
-> cd MornigStar
+> git clone https://github.com/Shelbyx/AstroBot/
+> cd AstroBot
 > bash install.sh
 > node index.js
 > Escaneie O Código E Pronto!
