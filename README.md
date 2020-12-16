@@ -25,7 +25,7 @@ WHATSAPP BOT PARA TERMUX
 
 # FUNÇÕES
 
-| FUNCIONA       |               FUNÇÕES     |
+| 🤖       |               FUNÇÕES     |
 | :-----------: | :--------------------------------:  |
 |       ✅       | IGSTALK                           |
 |       ✅       | STICKER                           |
@@ -35,7 +35,7 @@ WHATSAPP BOT PARA TERMUX
 |       ✅       | LETRA                             |
 |       ✅       | CRIPTO                            |
 |       ✅       | YTMP4/MP3 COM LINK                            |
-|       ✅       | OCR/SCAN                            |
+|       ✅       | OCR/SCAN                            | oi |
 
 ## EM BREVE MAIS OPÇÕES
 
