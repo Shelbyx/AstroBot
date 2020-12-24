@@ -95,7 +95,6 @@ conn.on('message-new', async(m) =>
    let id = m.key.remoteJid
    const messageType = Object.keys(messageContent)[0] // message will always contain one key signifying what kind of message
    let imageMessage = m.message.imageMessage;
-   let videoMessage = m.message.videoMessage;
    console.log(`[ ${moment().format("HH:mm:ss")} ] => Número: [ ${id.split("@s.whatsapp.net")[0]} ] => ${text}`);
 
 
@@ -121,15 +120,6 @@ if (text.includes("!say")){
 conn.sendMessage(id, teks, MessageType.text)
 }
 
-if (text.includes("!ytmp3")){
-const teks = text.replace(/!ytmp3 /, "")
-axios.get(`https://alfians-api.herokuapp.com/api/yta?url=${teks}`).then((res) => {
-	conn.sendMessage(id, '[ESPERE] Em andamento ⏳ aguarde um momento', MessageType.text)
-    let hasil = `✅A música foi "baixada" com sucesso, por favor clique no link e baixe a sua música🤖\nClique no link abaixo📎\n\nNome Da Música Solicitada: ${res.data.title}\n\nTamanho do áudio: ${res.data.filesize}\n\nLink: ${res.data.result}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
-})
-}
-
 if (text.includes("!igstalk")){
   const teks = text.replace(/!igstalk /, "")
   axios.get(`https://alfians-api.herokuapp.com/api/stalk?username=${teks}`).then ((res) =>{
@@ -139,14 +129,66 @@ if (text.includes("!igstalk")){
 })
 }
 
-if (text.includes("!ytmp4")){
-const teks = text.replace(/!ytmp4 /, "")
-axios.get(`https://alfians-api.herokuapp.com/api/ytv?url=${teks}`).then((res) => {
-	conn.sendMessage(id, '[ESPERE] Em andamento ⏳ aguarde um momento', MessageType.text)
-    let hasil = `✅Vídeo Baixado Com Sucesso🤖, por favor clique no link e baixe o seu vídeo \nClique no link abaixo📎\n\nNome do Vídeo Solicitado: ${res.data.title}\n\nTamanho do vídeo: ${res.data.filesize}\n\nLink: ${res.data.result}`;
-    conn.sendMessage(id, hasil ,MessageType.text);
-})
-}
+if (text.includes("!yt"))
+   {
+      const url = text.replace(/!yt/, "");
+      const exec = require('child_process').exec;
+
+      var videoid = url.match(/(?:https?:\/{2})?(?:w{3}\.)?youtu(?:be)?\.(?:com|be)(?:\/watch\?v=|\/)([^\s&]+)/);
+
+      const ytdl = require("ytdl-core")
+      if (videoid != null)
+      {
+         console.log("video id = ", videoid[1]);
+      }
+      else
+      {
+         conn.sendMessage(id, "gavalid", MessageType.text)
+      }
+      ytdl.getInfo(videoid[1]).then(info =>
+      {
+         if (info.length_seconds > 1000)
+         {
+            conn.sendMessage(id, " videonya kepanjangan", MessageType.text)
+         }
+         else
+         {
+
+            console.log(info.length_seconds)
+
+            function os_func()
+            {
+               this.execCommand = function (cmd)
+               {
+                  return new Promise((resolve, reject) =>
+                  {
+                     exec(cmd, (error, stdout, stderr) =>
+                     {
+                        if (error)
+                        {
+                           reject(error);
+                           return;
+                        }
+                        resolve(stdout)
+                     });
+                  })
+               }
+            }
+            var os = new os_func();
+
+            os.execCommand('ytdl ' + url + ' -q highest -o mp4/' + videoid[1] + '.mp4').then(res =>
+            {
+		const buffer = fs.readFileSync("mp4/"+ videoid[1] +".mp4")
+               conn.sendMessage(id, buffer, MessageType.video)
+            }).catch(err =>
+            {
+               console.log("os >>>", err);
+            })
+
+         }
+      });
+
+   }
 
 if (text.includes("!twt")){
 const teks = text.replace(/!twt /, "")
@@ -333,25 +375,6 @@ conn.sendMessage(id, 'ulangi dengan  !pict cewek/cowok\n\nMisal: !pict cowok' ,M
       if (caption == '!sticker')
       {
          const stiker = await conn.downloadAndSaveMediaMessage(m) // to decrypt & save to file
-
-         const
-         {
-            exec
-         } = require("child_process");
-         exec('cwebp -q 50 ' + stiker + ' -o temp/' + jam + '.webp', (error, stdout, stderr) =>
-         {
-            let stik = fs.readFileSync('temp/' + jam + '.webp')
-            conn.sendMessage(id, stik, MessageType.sticker)
-         });
-      }
-   }
-if (messageType == 'videoMessage')
-   {
-      let caption = videoMessage.caption.toLocaleLowerCase()
-      const buffer = await conn.downloadMediaMessage(m)
-      if (caption == '!stickergif')
-      {
-         const stiker = await conn.downloadAndSaveMediaMessage(m)
 
          const
          {
