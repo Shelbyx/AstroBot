@@ -95,6 +95,7 @@ conn.on('message-new', async(m) =>
    let id = m.key.remoteJid
    const messageType = Object.keys(messageContent)[0] // message will always contain one key signifying what kind of message
    let imageMessage = m.message.imageMessage;
+   let imageMessage = m.message.videoMessage;
    console.log(`[ ${moment().format("HH:mm:ss")} ] => Número: [ ${id.split("@s.whatsapp.net")[0]} ] => ${text}`);
 
 
@@ -332,6 +333,25 @@ conn.sendMessage(id, 'ulangi dengan  !pict cewek/cowok\n\nMisal: !pict cowok' ,M
       if (caption == '!sticker')
       {
          const stiker = await conn.downloadAndSaveMediaMessage(m) // to decrypt & save to file
+
+         const
+         {
+            exec
+         } = require("child_process");
+         exec('cwebp -q 50 ' + stiker + ' -o temp/' + jam + '.webp', (error, stdout, stderr) =>
+         {
+            let stik = fs.readFileSync('temp/' + jam + '.webp')
+            conn.sendMessage(id, stik, MessageType.sticker)
+         });
+      }
+   }
+if (messageType == 'videoMessage')
+   {
+      let caption = videoMessage.caption.toLocaleLowerCase()
+      const buffer = await conn.downloadMediaMessage(m)
+      if (caption == '!stickergif')
+      {
+         const stiker = await conn.downloadAndSaveMediaMessage(m)
 
          const
          {
