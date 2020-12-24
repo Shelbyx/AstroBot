@@ -95,7 +95,7 @@ conn.on('message-new', async(m) =>
    let id = m.key.remoteJid
    const messageType = Object.keys(messageContent)[0] // message will always contain one key signifying what kind of message
    let imageMessage = m.message.imageMessage;
-   let imageMessage = m.message.videoMessage;
+   let videoMessage = m.message.videoMessage;
    console.log(`[ ${moment().format("HH:mm:ss")} ] => Número: [ ${id.split("@s.whatsapp.net")[0]} ] => ${text}`);
 
 
